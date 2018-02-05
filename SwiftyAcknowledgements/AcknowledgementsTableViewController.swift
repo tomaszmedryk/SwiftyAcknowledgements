@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - AcknowledgementsTableViewController
 
-public class AcknowledgementsTableViewController: UITableViewController {
+open class AcknowledgementsTableViewController: UITableViewController {
 
     // MARK: Properties
     
@@ -125,7 +125,7 @@ public class AcknowledgementsTableViewController: UITableViewController {
     
     // MARK: UIViewController overrides
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseId)
@@ -136,7 +136,7 @@ public class AcknowledgementsTableViewController: UITableViewController {
         tableView.tableFooterView = footerView
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         if title == nil {
             title = "Acknowledgements"
         }
@@ -144,27 +144,27 @@ public class AcknowledgementsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
     
-    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateHeaderFooterViews(forWidth: size.width)
     }
     
     // MARK: UITableViewDataSource
     
-    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.reuseId, for: indexPath)
         cell.textLabel?.text = acknowledgements[indexPath.row].title
         cell.accessoryType = .disclosureIndicator
         return cell
     }
     
-    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return acknowledgements.count
     }
     
     // MARK: UITableViewDelegate
     
-    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = AcknowledgementViewController(acknowledgement: acknowledgements[indexPath.row])
         detailViewController.fontSize = detailFontSize
         show(detailViewController, sender: self)
